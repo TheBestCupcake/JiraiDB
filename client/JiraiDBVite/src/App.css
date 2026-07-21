@@ -34,6 +34,48 @@
   padding: 10px;
 }
 
+
+.columnList{
+  display: flex;
+  flex-direction: column;
+}
+
+.rowList{
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+/* Image Display */
+.displayImage{
+  border-color: #b6889e;
+  border-radius: 2px;
+  border-style: solid;
+  max-width: 400px;
+}
+
+.split{
+  background-color: #82748b;
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+
+  width: 45%;
+  padding: 10px;
+}
+
+.split-left{
+  float: left;
+  width: 50%;
+}
+
+.split-right{
+  float: left;
+  width: 50%;
+}
+
+
 /* Footer */
 .containerFooter{
   color: #e3d6e7;
