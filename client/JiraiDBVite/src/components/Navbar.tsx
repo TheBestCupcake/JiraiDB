@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <>
-      <div id="Navbar">
+      <div id="navbar">
         <span>
           <Link key={"/"} to={"/"}>
             <strong>JiraiDB</strong>
