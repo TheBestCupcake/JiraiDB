@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import RoutesProvider from "./utils/routes";
 import "./App.css";
