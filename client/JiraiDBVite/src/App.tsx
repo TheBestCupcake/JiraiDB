@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
+import RoutesProvider from "./utils/routes";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <div className="container">
-        <h1>JiraiDB</h1>
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <RoutesProvider />
+        </div>
+      </BrowserRouter>
     </>
   );
 }
