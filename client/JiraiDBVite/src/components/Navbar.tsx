@@ -4,13 +4,11 @@ function Navbar() {
   return (
     <>
       <div id="navbar">
-        <span>
+        <h1>
           <Link key={"/"} to={"/"} className="siteName">
-            <h1>
-              <strong>JiraiDB</strong>
-            </h1>
+            JiraiDB
           </Link>
-        </span>
+        </h1>
 
         <nav></nav>
       </div>
