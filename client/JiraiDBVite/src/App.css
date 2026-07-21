@@ -14,8 +14,9 @@
 
 /* Header */
 .containerHeader{
+  background-color: #b6889e;
+
   color: #e3d6e7;
-  background-color: #82748b;
   display: flex;
   gap: 15px;
   padding: 10px;
@@ -29,6 +30,8 @@
 /* Body */
 .containerBody{
   color: #e3d6e7;
+  gap: 15px;
+  padding: 10px;
 }
 
 /* Footer */
