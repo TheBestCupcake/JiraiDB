@@ -5,9 +5,9 @@ function Navbar() {
     <>
       <div id="navbar">
         <span>
-          <Link key={"/"} to={"/"}>
+          <Link key={"/"} to={"/"} className="siteName">
             <h1>
-              <strong className="siteName">JiraiDB</strong>
+              <strong>JiraiDB</strong>
             </h1>
           </Link>
         </span>
