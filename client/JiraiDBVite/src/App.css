@@ -27,6 +27,38 @@
   text-decoration: none;
 }
 
+/* Dropdown Menu */
+.dropdown{
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownButton{
+  display: flex;
+}
+
+.dropdown a{
+  background-color: #b6889e;
+
+  color: #e3d6e7;
+  text-decoration: none;
+  padding:12px;
+
+  display: flex;
+  flex: 1;
+}
+
+.dropdownContent{
+  display: none;
+  position: absolute;
+}
+
+.dropdown:hover .dropdownContent{
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+}
+
 /* Body */
 .containerBody{
   color: #e3d6e7;
