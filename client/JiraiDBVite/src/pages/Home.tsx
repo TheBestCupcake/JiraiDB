@@ -33,6 +33,12 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <section>
+        <div>
+          <input type="search" placeholder="Search" className="searchbar" />
+        </div>
+      </section>
     </>
   );
 }

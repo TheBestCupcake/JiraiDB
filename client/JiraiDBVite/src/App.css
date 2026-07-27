@@ -59,6 +59,15 @@
   min-width: 100%;
 }
 
+/* Search Bar */
+.searchbar{
+  color: #e3d6e7;
+
+  border-radius: 25px;
+  background-color: #82748b;
+  padding: 10px;
+}
+
 /* Body */
 .containerBody{
   color: #e3d6e7;
