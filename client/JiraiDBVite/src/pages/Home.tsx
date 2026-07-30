@@ -2,17 +2,27 @@ import horizontal from "../assets/horizontalimgexmaple.jpg";
 import vertical from "../assets/verticalimgexample.jpg";
 import square from "../assets/squareimgexample.jpg";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { fetchItemByID } from "../utils/itemServices";
 
 function Home() {
+  const [itemIMG, setItemIMG] = useState("");
+
+  useEffect(() => {
+    const loadIMG = async () => {
+      const item = await fetchItemByID();
+      setItemIMG(item.imgPath);
+    };
+
+    loadIMG();
+  }, []);
+
   return (
     <>
       <section>
         <div className="split">
           <div className="split-left">
-            <img
-              src="https://drive.google.com/thumbnail?id=1jQPLfcSS820mynAZTt0yGavF5TszlpGK"
-              className="displayImage"
-            />
+            <img src={itemIMG} className="displayImage" />
           </div>
           <div className="split-right">
             <h1>Home</h1>
