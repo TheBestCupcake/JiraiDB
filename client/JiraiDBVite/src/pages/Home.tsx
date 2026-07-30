@@ -9,7 +9,10 @@ function Home() {
       <section>
         <div className="split">
           <div className="split-left">
-            <img src={vertical} className="displayImage" />
+            <img
+              src="https://drive.google.com/thumbnail?id=1jQPLfcSS820mynAZTt0yGavF5TszlpGK"
+              className="displayImage"
+            />
           </div>
           <div className="split-right">
             <h1>Home</h1>
