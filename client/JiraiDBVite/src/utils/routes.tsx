@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 
 let routeVariables = [
   { path: "/", name: "Home", component: <Home /> },
-  { path: "/Items/:item", name: ":item", component: <Home /> },
+  { path: "/Clothes/:id", name: ":id", component: <Home /> },
 ];
 
 function RoutesProvider() {
