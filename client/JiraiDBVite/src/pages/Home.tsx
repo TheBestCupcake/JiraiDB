@@ -1,16 +1,20 @@
 import horizontal from "../assets/horizontalimgexmaple.jpg";
 import vertical from "../assets/verticalimgexample.jpg";
 import square from "../assets/squareimgexample.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchItemByID } from "../utils/itemServices";
 
 function Home() {
   const [itemIMG, setItemIMG] = useState("");
 
+  //This returns everything after localhost:5173
+  let location = useLocation();
+  let id = location.pathname;
+
   useEffect(() => {
     const loadIMG = async () => {
-      const item = await fetchItemByID();
+      const item = await fetchItemByID(id);
       setItemIMG(item.imgPath);
     };
 
