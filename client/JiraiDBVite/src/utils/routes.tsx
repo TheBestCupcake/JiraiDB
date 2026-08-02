@@ -2,7 +2,10 @@ import { Route, Routes } from "react-router-dom";
 
 import Home from "../pages/Home";
 
-let routeVariables = [{ path: "/", name: "Home", component: <Home /> }];
+let routeVariables = [
+  { path: "/", name: "Home", component: <Home /> },
+  { path: "/Items/:item", name: ":item", component: <Home /> },
+];
 
 function RoutesProvider() {
   const routesObjects = routeVariables.map((variable) => (
