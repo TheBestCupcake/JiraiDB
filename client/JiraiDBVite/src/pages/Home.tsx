@@ -1,6 +1,3 @@
-import horizontal from "../assets/horizontalimgexmaple.jpg";
-import vertical from "../assets/verticalimgexample.jpg";
-import square from "../assets/squareimgexample.jpg";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchItemByID } from "../utils/itemServices";
