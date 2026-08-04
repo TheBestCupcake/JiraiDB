@@ -1,6 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchItemByID } from "../utils/itemServices";
+import { fetchAllItems, fetchItemByID } from "../utils/itemServices";
+
+type databaseItem = {
+  imgPath: string;
+};
 
 function Home() {
   const [itemIMG, setItemIMG] = useState("");
@@ -16,6 +20,17 @@ function Home() {
     };
 
     loadIMG();
+  }, []);
+
+  const [itemList, setItemList] = useState([]);
+
+  useEffect(() => {
+    const getItems = async () => {
+      const items = await fetchAllItems();
+      setItemList(items);
+    };
+
+    getItems();
   }, []);
 
   return (
@@ -51,6 +66,16 @@ function Home() {
       <section>
         <div>
           <input type="search" placeholder="Search" className="searchbar" />
+        </div>
+      </section>
+
+      <section>
+        <div>
+          {itemList.map((item: databaseItem) => (
+            <>
+              <img src={item.imgPath} />
+            </>
+          ))}
         </div>
       </section>
     </>
