@@ -5,7 +5,7 @@ const {getItem, getAllItems} = require("../controllers/itemcontroller");
 
 
 //router.get(Clothes/"path", response value);
-router.get("/", getAllItems);
+router.get("/", getAllOrSearchedItems);
 router.get("/:id", getItem);
 
 

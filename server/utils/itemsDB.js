@@ -24,8 +24,20 @@ async function dbGetAllItems(){
     }
 }
 
+async function dbGetSearchedItems(query){
+    try{
+        const itemList = await db.any(`SELECT * FROM testtable WHERE id = '${query}'`, [true]);
+        return itemList;
+    }
+    catch(e){
+        console.log("ERROR CAUGHT");
+        console.log(e);
+    }
+}
+
 
 module.exports = {
     dbGetItemByID,
     dbGetAllItems,
+    dbGetSearchedItems,
 }
