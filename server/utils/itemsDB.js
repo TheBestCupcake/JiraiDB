@@ -26,7 +26,7 @@ async function dbGetAllItems(){
 
 async function dbGetSearchedItems(query){
     try{
-        const itemList = await db.any(`SELECT * FROM testtable WHERE id = '${query}'`, [true]);
+        const itemList = await db.any(`SELECT * FROM testtable WHERE id ILIKE '%${query}%'`, [true]);
         return itemList;
     }
     catch(e){
