@@ -9,7 +9,7 @@ import {
 type databaseItem = {
   imgPath: string;
   id: string;
-  description: string;
+  Description: string;
 };
 
 function Home() {
@@ -108,7 +108,7 @@ function Home() {
           {searchItemList.map((item: databaseItem) => (
             <>
               <img key={item.id} src={item.imgPath} />
-              <p>{item.description}</p>
+              <p>{item.Description}</p>
             </>
           ))}
         </div>
