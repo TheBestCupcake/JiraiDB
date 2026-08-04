@@ -4,6 +4,7 @@ import { fetchAllItems, fetchItemByID } from "../utils/itemServices";
 
 type databaseItem = {
   imgPath: string;
+  id: string;
 };
 
 function Home() {
@@ -73,7 +74,7 @@ function Home() {
         <div>
           {itemList.map((item: databaseItem) => (
             <>
-              <img src={item.imgPath} />
+              <img key={item.id} src={item.imgPath} />
             </>
           ))}
         </div>
