@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getItem, getAllItems} = require("../controllers/itemcontroller");
+const {getItem, getAllOrSearchedItems} = require("../controllers/itemcontroller");
 
 
 //router.get(Clothes/"path", response value);
