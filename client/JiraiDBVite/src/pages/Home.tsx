@@ -40,25 +40,18 @@ function Home() {
   }, []);
 
   const [searchInput, setSearchInput] = useState("");
+  const [searchItemList, setSearchItemList] = useState([]);
 
   useEffect(() => {
-    const search = () => {
+    const search = async () => {
       setSearchInput(searchInput);
+
+      const items = await fetchItemsBySearch(searchInput);
+      setSearchItemList(items);
     };
 
     search();
   }, [searchInput]);
-
-  const [searchItemList, setSearchItemList] = useState([]);
-
-  useEffect(() => {
-    const getItemsBySearch = async () => {
-      const items = await fetchItemsBySearch("testid");
-      setSearchItemList(items);
-    };
-
-    getItemsBySearch();
-  }, []);
 
   return (
     <>
@@ -102,7 +95,16 @@ function Home() {
 
       <section>
         <div>
-          <input type="search" placeholder="Search" className="searchbar" />
+          <input
+            type="search"
+            placeholder="Search"
+            className="searchbar"
+            value={searchInput}
+            onChange={(searchBar) => setSearchInput(searchBar.target.value)}
+          />
+
+          <p>{searchInput}</p>
+
           {searchItemList.map((item: databaseItem) => (
             <>
               <img key={item.id} src={item.imgPath} />
