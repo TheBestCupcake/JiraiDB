@@ -1,10 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchAllItems, fetchItemByID } from "../utils/itemServices";
+import {
+  fetchAllItems,
+  fetchItemByID,
+  fetchItemsBySearch,
+} from "../utils/itemServices";
 
 type databaseItem = {
   imgPath: string;
   id: string;
+  description: string;
 };
 
 function Home() {
@@ -21,7 +26,7 @@ function Home() {
     };
 
     loadIMG();
-  }, []);
+  }, [id]);
 
   const [itemList, setItemList] = useState([]);
 
@@ -32,6 +37,27 @@ function Home() {
     };
 
     getItems();
+  }, []);
+
+  const [searchInput, setSearchInput] = useState("");
+
+  useEffect(() => {
+    const search = () => {
+      setSearchInput(searchInput);
+    };
+
+    search();
+  }, [searchInput]);
+
+  const [searchItemList, setSearchItemList] = useState([]);
+
+  useEffect(() => {
+    const getItemsBySearch = async () => {
+      const items = await fetchItemsBySearch("testid");
+      setSearchItemList(items);
+    };
+
+    getItemsBySearch();
   }, []);
 
   return (
@@ -66,15 +92,21 @@ function Home() {
 
       <section>
         <div>
-          <input type="search" placeholder="Search" className="searchbar" />
+          {itemList.map((item: databaseItem) => (
+            <>
+              <img key={item.id} src={item.imgPath} />
+            </>
+          ))}
         </div>
       </section>
 
       <section>
         <div>
-          {itemList.map((item: databaseItem) => (
+          <input type="search" placeholder="Search" className="searchbar" />
+          {searchItemList.map((item: databaseItem) => (
             <>
               <img key={item.id} src={item.imgPath} />
+              <p>{item.description}</p>
             </>
           ))}
         </div>
