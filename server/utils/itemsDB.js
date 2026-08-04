@@ -13,7 +13,19 @@ async function dbGetItemByID(id){
     }
 }
 
+async function dbGetAllItems(){
+    try{
+        const itemList = await db.any(`SELECT * FROM testtable`, [true]);
+        return itemList;
+    }
+    catch(e){
+        console.log("ERROR CAUGHT");
+        console.log(e);
+    }
+}
+
 
 module.exports = {
     dbGetItemByID,
+    dbGetAllItems,
 }

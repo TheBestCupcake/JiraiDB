@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const {getItem} = require("../controllers/itemcontroller");
+const {getItem, getAllItems} = require("../controllers/itemcontroller");
 
 
 //router.get(Clothes/"path", response value);
+router.get("/", getAllItems);
 router.get("/:id", getItem);
 
 
