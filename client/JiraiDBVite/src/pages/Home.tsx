@@ -28,7 +28,7 @@ function Home() {
     loadIMG();
   }, [id]);
 
-  const [itemList, setItemList] = useState([]);
+  const [itemList, setItemList] = useState<databaseItem[]>([]);
 
   useEffect(() => {
     const getItems = async () => {
@@ -38,6 +38,22 @@ function Home() {
 
     getItems();
   }, []);
+
+  const [filterSearchInput, setFilterSearchInput] = useState("");
+  const [filterSearchList, setFilterSearchList] = useState<databaseItem[]>([]);
+
+  useEffect(() => {
+    const filterBySearch = async () => {
+      setFilterSearchInput(filterSearchInput);
+
+      const filteredItems = itemList.filter((item) =>
+        item.id.includes(filterSearchInput),
+      );
+      setFilterSearchList(filteredItems);
+    };
+
+    filterBySearch();
+  }, [filterSearchInput]);
 
   const [searchInput, setSearchInput] = useState("");
   const [searchItemList, setSearchItemList] = useState([]);
@@ -84,6 +100,7 @@ function Home() {
       </section>
 
       <section>
+        <h1>All Items</h1>
         <div>
           {itemList.map((item: databaseItem) => (
             <>
@@ -94,6 +111,30 @@ function Home() {
       </section>
 
       <section>
+        <h1>Fetch all items and filter based on search</h1>
+        <div>
+          <input
+            type="search"
+            placeholder="Search"
+            className="searchbar"
+            value={filterSearchInput}
+            onChange={(filterSearchBar) =>
+              setFilterSearchInput(filterSearchBar.target.value)
+            }
+          />
+
+          <p>{filterSearchInput}</p>
+
+          {filterSearchList.map((item: databaseItem) => (
+            <>
+              <img key={item.id} src={item.imgPath} />
+            </>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h1>Search sends api request</h1>
         <div>
           <input
             type="search"
