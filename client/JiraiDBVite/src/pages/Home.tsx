@@ -10,6 +10,11 @@ type databaseItem = {
   imgPath: string;
   id: string;
   Description: string;
+  category: string;
+};
+
+type checkbox = {
+  [key: string]: boolean;
 };
 
 function Home() {
@@ -68,6 +73,31 @@ function Home() {
 
     search();
   }, [searchInput]);
+
+  const [checkboxOrItemList, setCheckboxOrItemList] = useState<databaseItem[]>(
+    [],
+  );
+
+  const [checkboxes, setCheckboxes] = useState<checkbox>({
+    category1: false,
+    category2: false,
+    category3: false,
+  });
+
+  const handleORCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+
+    setCheckboxes((prev) => ({
+      ...prev,
+      [value]: checked,
+    }));
+  };
+
+  useEffect(() => {
+    const filtered = itemList.filter((item) => checkboxes[item.category]);
+
+    setCheckboxOrItemList(filtered);
+  }, [checkboxes, itemList]);
 
   return (
     <>
@@ -150,6 +180,48 @@ function Home() {
             <>
               <img key={item.id} src={item.imgPath} />
               <p>{item.Description}</p>
+            </>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div>
+          <label>
+            Category 1
+            <input
+              type="checkbox"
+              name="Category 1"
+              value="category1"
+              onChange={handleORCheckboxChange}
+            />
+          </label>
+
+          <label>
+            Category 2
+            <input
+              type="checkbox"
+              name="Category 2"
+              value="category2"
+              onChange={handleORCheckboxChange}
+            />
+          </label>
+
+          <label>
+            Category 3
+            <input
+              type="checkbox"
+              name="Category 3"
+              value="category3"
+              onChange={handleORCheckboxChange}
+            />
+          </label>
+        </div>
+
+        <div>
+          {checkboxOrItemList.map((item) => (
+            <>
+              <img key={item.id} src={item.imgPath} />
             </>
           ))}
         </div>
