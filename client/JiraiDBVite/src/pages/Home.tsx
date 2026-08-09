@@ -99,6 +99,33 @@ function Home() {
     setCheckboxOrItemList(filtered);
   }, [checkboxes, itemList]);
 
+  const radioCategories = [
+    { label: "All", name: "Category", value: "" },
+    { label: "Category 1", name: "Category", value: "category1" },
+    { label: "Category 2", name: "Category", value: "category2" },
+    { label: "Category 3", name: "Category", value: "category3" },
+  ];
+
+  const [radioItemList, setRadioItemList] = useState<databaseItem[]>([]);
+  const [currentRadio, setCurrentRadio] = useState("");
+
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+
+    setCurrentRadio(value);
+  };
+
+  useEffect(() => {
+    let filtered;
+    if (currentRadio == "") {
+      filtered = itemList;
+    } else {
+      filtered = itemList.filter((item) => item.category == currentRadio);
+    }
+
+    setRadioItemList(filtered);
+  }, [currentRadio, itemList]);
+
   return (
     <>
       <section>
@@ -220,6 +247,31 @@ function Home() {
 
         <div>
           {checkboxOrItemList.map((item) => (
+            <>
+              <img key={item.id} src={item.imgPath} />
+            </>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div>
+          {radioCategories.map((category) => (
+            <label>
+              {category.label}
+              <input
+                type="radio"
+                name={category.name}
+                value={category.value}
+                onChange={handleRadioChange}
+                checked={category.value === currentRadio}
+              />
+            </label>
+          ))}
+        </div>
+
+        <div>
+          {radioItemList.map((item) => (
             <>
               <img key={item.id} src={item.imgPath} />
             </>
