@@ -74,6 +74,13 @@ function Home() {
     search();
   }, [searchInput]);
 
+  const filterCategories = [
+    { label: "All", name: "Category", value: "" },
+    { label: "Category 1", name: "Category", value: "category1" },
+    { label: "Category 2", name: "Category", value: "category2" },
+    { label: "Category 3", name: "Category", value: "category3" },
+  ];
+
   const [checkboxOrItemList, setCheckboxOrItemList] = useState<databaseItem[]>(
     [],
   );
@@ -98,13 +105,6 @@ function Home() {
 
     setCheckboxOrItemList(filtered);
   }, [checkboxes, itemList]);
-
-  const radioCategories = [
-    { label: "All", name: "Category", value: "" },
-    { label: "Category 1", name: "Category", value: "category1" },
-    { label: "Category 2", name: "Category", value: "category2" },
-    { label: "Category 3", name: "Category", value: "category3" },
-  ];
 
   const [radioItemList, setRadioItemList] = useState<databaseItem[]>([]);
   const [currentRadio, setCurrentRadio] = useState("");
@@ -214,35 +214,17 @@ function Home() {
 
       <section>
         <div>
-          <label>
-            Category 1
-            <input
-              type="checkbox"
-              name="Category 1"
-              value="category1"
-              onChange={handleORCheckboxChange}
-            />
-          </label>
-
-          <label>
-            Category 2
-            <input
-              type="checkbox"
-              name="Category 2"
-              value="category2"
-              onChange={handleORCheckboxChange}
-            />
-          </label>
-
-          <label>
-            Category 3
-            <input
-              type="checkbox"
-              name="Category 3"
-              value="category3"
-              onChange={handleORCheckboxChange}
-            />
-          </label>
+          {filterCategories.map((category) => (
+            <label>
+              {category.label}
+              <input
+                type="checkbox"
+                name={category.name}
+                value={category.value}
+                onChange={handleORCheckboxChange}
+              />
+            </label>
+          ))}
         </div>
 
         <div>
@@ -256,7 +238,7 @@ function Home() {
 
       <section>
         <div>
-          {radioCategories.map((category) => (
+          {filterCategories.map((category) => (
             <label>
               {category.label}
               <input
