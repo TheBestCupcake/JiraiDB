@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Upload from "../pages/Upload";
 import ProtectedRoute from "../components/ProtectedRoute";
+import SignUp from "../pages/SignUp";
 
 let routeVariables = [
   { path: "/", name: "Home", component: <Home /> },
@@ -18,6 +19,7 @@ let routeVariables = [
       </ProtectedRoute>
     ),
   },
+  { path: "/SignUp", name: "Sign Up", component: <SignUp /> },
 ];
 
 function RoutesProvider() {
