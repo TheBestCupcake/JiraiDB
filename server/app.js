@@ -11,7 +11,8 @@ var session = require('express-session');
 const port = process.env.PORT || 3000
 
 //Routes
-const itemRoutes = require("./routes/routes");
+const itemRoutes = require("./routes/itemRoutes");
+const authRoutes = require('./routes/authenticationRoutes');
 
 //Setup
 app.use(express.json());
@@ -28,6 +29,7 @@ app.use(session({
   secret: 'shhhh, very secret'
 }));
 
+/*
 const users = {
   tj: {
     name: "tj",
@@ -126,8 +128,11 @@ app.post("/login", async (req, res, next) => {
   }
 });
 
+*/
+
 //Routes
 app.use("/Clothes", itemRoutes);
+app.use("/Auth", authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Root Route /');
