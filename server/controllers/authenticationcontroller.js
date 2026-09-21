@@ -1,5 +1,12 @@
 const { authenticate } = require("../utils/authServices");
 
+exports.isAuthed = async (req, res) => {
+ res.json({
+    message: "You have access to the restricted area.",
+    user: req.session.user,
+  });
+}
+
 exports.login = async (req, res, next) => {
     try {
         const { username, password } = req.body;
@@ -55,3 +62,4 @@ exports.logout = async (req, res) => {
 exports.signup = async (req, res) => {
 
 }
+
