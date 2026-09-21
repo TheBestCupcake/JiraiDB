@@ -1,7 +1,7 @@
 const apiURL = "http://localhost:3000";
 
 export const login = async (username: string, password: string) => {
-  const response = await fetch(`${apiURL}/Auth/login`, {
+  const response = await fetch(`${apiURL}/auth/login`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -24,8 +24,24 @@ export const login = async (username: string, password: string) => {
   return data;
 };
 
+export const logout = async () => {
+  const response = await fetch(`${apiURL}/auth/logout`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  if (response.ok) {
+    console.log(data.message);
+  }
+
+  return data;
+};
+
 export const signUp = async (username: string, password: string) => {
-  const response = await fetch(`${apiURL}/Auth/signup`, {
+  const response = await fetch(`${apiURL}/auth/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
