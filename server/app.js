@@ -4,7 +4,6 @@ const app = express();
 const cors = require('cors');
 
 const helmet = require('helmet');
-const argon2 = require("argon2");
 var session = require('express-session');
 
 
