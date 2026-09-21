@@ -4,6 +4,6 @@ const router = express.Router();
 
 //router.get(Auth/'path', response value); can also do post and other requests instead of get.
 router.post('/login', login);
-router.get('/logout', logout);
+router.post('/logout', logout);
 
 module.exports = router;
