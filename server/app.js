@@ -30,7 +30,7 @@ app.use(session({
 
 //Routes
 app.use("/Clothes", itemRoutes);
-app.use("/Auth", authRoutes);
+app.use("/auth", authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Root Route /');
