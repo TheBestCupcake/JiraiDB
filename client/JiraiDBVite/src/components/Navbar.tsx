@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { logout } from "../utils/loginServices";
 
 function Navbar() {
   return (
@@ -10,7 +11,16 @@ function Navbar() {
           </Link>
         </h1>
 
-        <nav></nav>
+        <button onClick={logout}>Logout</button>
+        <nav>
+          <Link key={"/Login"} to={"/Login"}>
+            Login
+          </Link>
+          <br></br>
+          <Link key={"/Upload"} to={"/Upload"}>
+            Restricted Page
+          </Link>
+        </nav>
       </div>
     </>
   );
