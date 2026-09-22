@@ -1,14 +1,27 @@
+import { Navigate, useNavigate } from "react-router-dom";
 import { login } from "../utils/loginServices";
 
+type loginResult = {
+  success: boolean;
+  message: string;
+};
+
 function Login() {
-  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const navigate = useNavigate();
+
+  async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     // Prevent the browser from reloading the page
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
-    login(username, password);
+    const result = await login(username, password);
+
+    if (result) {
+      console.log("redirecting");
+      navigate("/");
+    }
   }
   return (
     <>
