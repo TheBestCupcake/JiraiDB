@@ -25,7 +25,7 @@ export const login = async (username: string, password: string) => {
 };
 
 export const logout = async () => {
-  const response = await fetch(`${apiURL}/auth/logout`);
+  const response = await fetch(`${apiURL}/auth/logout`, { method: "POST" });
 
   const data = await response.json();
 
