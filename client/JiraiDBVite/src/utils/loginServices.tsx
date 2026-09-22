@@ -21,7 +21,7 @@ export const login = async (username: string, password: string) => {
     console.log(data.message);
   }
 
-  return data;
+  return response.ok;
 };
 
 export const logout = async () => {
