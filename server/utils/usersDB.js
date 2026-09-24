@@ -4,7 +4,7 @@ const db = pgp(connection);
 
 async function dbGetUserByUsername(username){
     try{
-        const userObject = await db.one(`SELECT * FROM testtable WHERE username = '${username}'`);
+        const userObject = await db.one(`SELECT * FROM users WHERE username = '${username}'`);
         return userObject;
     }
     catch(e){
@@ -15,7 +15,7 @@ async function dbGetUserByUsername(username){
 
 async function dbAddUser(username, password){
     try{
-        db.none(`INSERT INTO users(name, password) VALUES '${(username, password)}'`).then(() => {
+        db.none(`INSERT INTO users(username, password) VALUES '${(username, password)}'`).then(() => {
             console.log("User added successfully.");
         })
     }
