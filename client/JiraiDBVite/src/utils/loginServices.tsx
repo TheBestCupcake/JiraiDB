@@ -44,7 +44,7 @@ export const logout = async () => {
 };
 
 export const signUp = async (username: string, password: string) => {
-  const response = await fetch(`${apiURL}/auth/signup`, {
+  const response = await fetch(`${apiURL}/auth/register`, {
     method: "POST",
     headers: {
       Accept: "application/json",
