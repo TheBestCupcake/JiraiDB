@@ -1,11 +1,22 @@
+import { useNavigate } from "react-router-dom";
+import { signUp } from "../utils/loginServices";
+
 function SignUp() {
-  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const navigate = useNavigate();
+
+  async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     // Prevent the browser from reloading the page
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
+    const result = await signUp(username, password);
+
+    if (result) {
+      console.log("redirecting");
+      navigate("/Login");
+    }
   }
   return (
     <>
@@ -20,7 +31,7 @@ function SignUp() {
           <input type="password" name="password" id="password" />
         </p>
         <p>
-          <input type="submit" value="SignUp" />
+          <input type="submit" value="Sign Up" />
         </p>
       </form>
     </>
