@@ -1,13 +1,5 @@
 const argon2 = require("argon2");
-
-
-//Fake database for now
-const users = {
-  tj: {
-    name: "tj",
-    passwordHash: null,
-  },
-};
+const { dbGetUserByUsername } = require("./usersDB");
 
 // Create the password hash when setting up the test user
 async function setupUser() {
@@ -18,7 +10,7 @@ async function setupUser() {
 setupUser();
 
 exports.authenticate = async (username, password) => {
-  const user = users[username];
+  const user = dbGetUserByUsername(username);
 
   if (!user || !user.passwordHash) {
     return null;
