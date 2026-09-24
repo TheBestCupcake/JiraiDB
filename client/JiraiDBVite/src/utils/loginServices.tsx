@@ -64,5 +64,5 @@ export const signUp = async (username: string, password: string) => {
     console.log(data.message);
   }
 
-  return data;
+  return response.ok;
 };
