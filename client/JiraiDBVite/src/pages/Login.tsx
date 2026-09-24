@@ -1,10 +1,5 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../utils/loginServices";
-
-type loginResult = {
-  success: boolean;
-  message: string;
-};
 
 function Login() {
   const navigate = useNavigate();
