@@ -8,8 +8,7 @@ exports.authenticate = async (username, password) => {
     return null;
   }
 
-  const valid = (user.password === password);
-  //await argon2.verify(user.password, password);
+  const valid = await argon2.verify(user.password, password);
 
   return valid ? user : null;
 }
