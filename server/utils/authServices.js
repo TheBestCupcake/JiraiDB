@@ -2,13 +2,14 @@ const argon2 = require("argon2");
 const { dbGetUserByUsername } = require("./usersDB");
 
 exports.authenticate = async (username, password) => {
-  const user = dbGetUserByUsername(username);
+  const user = await dbGetUserByUsername(username);
 
-  if (!user || !user.passwordHash) {
+  if (!user || !user.password) {
     return null;
   }
 
-  const valid = await argon2.verify(user.passwordHash, password);
+  const valid = (user.password === password);
+  //await argon2.verify(user.password, password);
 
   return valid ? user : null;
 }
