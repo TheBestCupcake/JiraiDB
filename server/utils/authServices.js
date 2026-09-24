@@ -1,14 +1,6 @@
 const argon2 = require("argon2");
 const { dbGetUserByUsername } = require("./usersDB");
 
-// Create the password hash when setting up the test user
-async function setupUser() {
-  users.tj.passwordHash = await argon2.hash("foobar", {
-    type: argon2.argon2id,
-  });
-}
-setupUser();
-
 exports.authenticate = async (username, password) => {
   const user = dbGetUserByUsername(username);
 
