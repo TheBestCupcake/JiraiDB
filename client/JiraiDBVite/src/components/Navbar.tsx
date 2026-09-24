@@ -16,9 +16,13 @@ function Navbar() {
           <Link key={"/Login"} to={"/Login"}>
             Login
           </Link>
-          <br></br>
+          <br />
           <Link key={"/Upload"} to={"/Upload"}>
             Restricted Page
+          </Link>
+          <br />
+          <Link key={"/SignUp"} to={"/SignUp"}>
+            Sign Up
           </Link>
         </nav>
       </div>
