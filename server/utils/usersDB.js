@@ -1,3 +1,5 @@
+const { argon2d } = require('argon2');
+
 const pgp = require('pg-promise')();
 const connection = 'postgres://postgres:FishandChips69@localhost:5432/jiraiDB';
 const db = pgp(connection);
@@ -15,7 +17,11 @@ async function dbGetUserByUsername(username){
 
 async function dbAddUser(username, password){
     try{
-        db.none(`INSERT INTO users(username, password) VALUES '${(username, password)}'`).then(() => {
+        const passwordHash = await argon2.hash(password, {
+            type: argon2.argon2id,
+          });
+
+        db.none(`INSERT INTO users(username, password) VALUES '${(username, passwordHash)}'`).then(() => {
             console.log("User added successfully.");
         })
     }
