@@ -1,4 +1,5 @@
 const { authenticate } = require("../utils/authServices");
+const { dbAddUser } = require("../utils/usersDB");
 
 exports.isAuthed = async (req, res) => {
  res.json({
@@ -59,7 +60,26 @@ exports.logout = async (req, res) => {
   });
 }
 
-exports.signup = async (req, res) => {
+exports.register = async (req, res) => {
+  try{
+    const {username, password} = req.body;
 
+    if (!username || !password) {
+        return res.status(400).json({
+          success: false,
+          message: "Username and password are required",
+      });
+    }
+
+    dbAddUser(username, password);
+
+    res.json({
+      success: true,
+      message: "Sign Up successful",
+    });
+  }
+  catch(e){
+    next(err);
+  }
 }
 
