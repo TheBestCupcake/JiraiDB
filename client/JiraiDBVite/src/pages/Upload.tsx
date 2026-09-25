@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { upload } from "../utils/uploadServices";
 
 function Upload() {
   //Upload image
@@ -14,21 +15,35 @@ function Upload() {
     setPreview(URL.createObjectURL(file));
   };
 
+  //Form submission
+  async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const title = formData.get("title") as string;
+    const description = formData.get("description") as string;
+    const category = formData.get("categorySelector") as string;
+    const image = imageFile as File;
+
+    const result = await upload(title, description, category, image);
+  }
+
   return (
     <>
       <h1>UPLOAD</h1>
-      <form method="post">
+      <form method="post" onSubmit={handleFormSubmit}>
         <p>
           <label>Title: </label>
-          <input type="text" name="username" id="title" />
+          <input type="text" name="title" id="title" />
         </p>
         <p>
           <label>Description: </label>
-          <input type="text" name="username" id="description" />
+          <input type="text" name="description" id="description" />
         </p>
         <div>
           <label>Category: </label>
-          <select>
+          <select name="categorySelector" id="categorySelector">
             <option value={"category1"}>category 1</option>
             <option value={"category2"}>category 2</option>
             <option value={"category3"}>category 3</option>
@@ -36,10 +51,19 @@ function Upload() {
         </div>
         <div>
           <label>Upload File: </label>
-          <input type="file" accept="image/*" onChange={handleUpload} />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleUpload}
+            id="image"
+            name="image"
+          />
           <br />
           {preview && <img src={preview} style={{ width: "300px" }} />}
         </div>
+        <p>
+          <input type="submit" value="Upload" />
+        </p>
       </form>
     </>
   );
