@@ -18,3 +18,17 @@ exports.getAllOrSearchedItems = async (req, res) => {
     itemList = await dbGetAllItems();
     return res.status(200).json(itemList);
 }
+
+exports.uploadItem = async (req, res) => {
+    const {title, description, category} = req.body;
+
+    if(!title, !description, !category) {
+        return res.status(400).json({
+          success: false,
+          message: "title description and category are required.",
+      });
+    }
+
+    
+
+}

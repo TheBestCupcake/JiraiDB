@@ -35,6 +35,15 @@ async function dbGetSearchedItems(query){
     }
 }
 
+async function dbAddPendingItem(title, description, imgPath, category){
+    try{
+        
+    }
+    catch(e){
+        console.log("ERROR CAUGHT");
+        console.log(e);
+    }
+}
 
 module.exports = {
     dbGetItemByID,
