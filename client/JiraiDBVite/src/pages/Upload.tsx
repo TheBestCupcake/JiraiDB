@@ -1,5 +1,9 @@
-import { useState } from "react";
-import { upload } from "../utils/uploadServices";
+import { useEffect, useState } from "react";
+import {
+  completeUpload,
+  createUpload,
+  uploadImageToCloud,
+} from "../utils/uploadServices";
 
 function Upload() {
   //Upload image
@@ -15,18 +19,52 @@ function Upload() {
     setPreview(URL.createObjectURL(file));
   };
 
+  //Deletes the url when it unmounts.
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
+
+  const [isUploading, setIsUploading] = useState(false);
+
   //Form submission
   async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     // Prevent the browser from reloading the page
     e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const title = formData.get("title") as string;
-    const description = formData.get("description") as string;
-    const category = formData.get("categorySelector") as string;
-    const image = imageFile as File;
 
-    const result = await upload(title, description, category, image);
+    if (!imageFile) {
+      throw new Error("Image Not Found");
+    }
+
+    setIsUploading(true);
+
+    try {
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+      const title = formData.get("title") as string;
+      const description = formData.get("description") as string;
+      const category = formData.get("categorySelector") as string;
+
+      //Get presigned R2 url.
+      const uploadURL = await createUpload(title, description, category);
+
+      //Upload image to R2
+      await uploadImageToCloud(uploadURL, imageFile);
+
+      //Update the database to complete upload.
+      await completeUpload(uploadURL);
+
+      e.currentTarget.reset();
+      setImageFile(null);
+      setPreview(null);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsUploading(false);
+    }
   }
 
   return (
