@@ -1,7 +1,7 @@
 const apiURL = "http://localhost:3000";
 
 export const fetchItemByID = async (id: string) => {
-  const response = await fetch(`${apiURL}${id}`);
+  const response = await fetch(`${apiURL}/Clothes/${id}`);
 
   const item = await response.json();
   return item;
