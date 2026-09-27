@@ -1,13 +1,11 @@
+import MainItem from "../components/MainItem";
+
 function ItemDisplay() {
-  return;
-  <>
-    <section>
-      <div>
-        <img src="" />
-      </div>
-      <div></div>
-    </section>
-  </>;
+  return (
+    <>
+      <MainItem />
+    </>
+  );
 }
 
 export default ItemDisplay;
