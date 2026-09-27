@@ -5,10 +5,11 @@ import Login from "../pages/Login";
 import Upload from "../pages/Upload";
 import ProtectedRoute from "../components/ProtectedRoute";
 import SignUp from "../pages/SignUp";
+import ItemDisplay from "../pages/ItemDisplay";
 
 let routeVariables = [
   { path: "/", name: "Home", component: <Home /> },
-  { path: "/Clothes/:id", name: ":id", component: <Home /> },
+  { path: "/Clothes/:id", name: ":id", component: <ItemDisplay /> },
   { path: "/Login", name: "Login", component: <Login /> },
   {
     path: "/Upload",
