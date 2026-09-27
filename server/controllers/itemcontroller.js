@@ -1,4 +1,5 @@
 const {dbGetItemByID, dbGetAllItems, dbGetSearchedItems} = require("../utils/itemsDB");
+const { putUrl } = require("../utils/r2Services");
 
 exports.getItem = async (req, res) => {
     const id = req.params.id;
@@ -20,15 +21,17 @@ exports.getAllOrSearchedItems = async (req, res) => {
 }
 
 exports.uploadItem = async (req, res) => {
-    const {title, description, category} = req.body;
+    const {title, description, category, fileType} = req.body;
 
-    if(!title, !description, !category) {
+    if(!title, !description, !category, !fileType) {
         return res.status(400).json({
           success: false,
           message: "title description and category are required.",
       });
     }
 
+    const presignedURL = putUrl(title, fileType);
     
+
 
 }
