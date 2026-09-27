@@ -47,9 +47,15 @@ function Upload() {
       const title = formData.get("title") as string;
       const description = formData.get("description") as string;
       const category = formData.get("categorySelector") as string;
+      const fileType = imageFile.type;
 
       //Get presigned R2 url.
-      const uploadURL = await createUpload(title, description, category);
+      const uploadURL = await createUpload(
+        title,
+        description,
+        category,
+        fileType,
+      );
 
       //Upload image to R2
       await uploadImageToCloud(uploadURL, imageFile);

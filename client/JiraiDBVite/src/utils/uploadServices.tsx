@@ -4,11 +4,12 @@ export const createUpload = async (
   title: string,
   description: string,
   category: string,
+  fileType: string,
 ) => {
   const response = await fetch(`${apiURL}/Clothes/upload`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, description, category }),
+    body: JSON.stringify({ title, description, category, fileType }),
   });
 
   if (!response.ok) {
