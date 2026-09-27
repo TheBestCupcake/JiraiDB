@@ -1,6 +1,6 @@
 const { S3Client } = require("@aws-sdk/client-s3");
 
-const s3 = new S3Client({
+const jiraiS3Client = new S3Client({
   region: "auto",
   endpoint: process.env.R2_ENDPOINT,
   credentials: {
@@ -9,4 +9,4 @@ const s3 = new S3Client({
   },
 });
 
-module.exports = s3;
+module.exports = jiraiS3Client;
