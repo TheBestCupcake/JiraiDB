@@ -1,6 +1,7 @@
+
 /* Everything */
 :root{
-  background-color: #362d3b;
+  background-image: url("D:\Projects\JiraiDB\client\JiraiDBVite\src\assets\background.png");
 }
 
 *{
@@ -14,7 +15,7 @@
 
 /* Header */
 .containerHeader{
-  background-color: #b6889e;
+  background-color: #f0c5d4;
 
   color: #e3d6e7;
   display: flex;
@@ -93,7 +94,7 @@
   border-color: #b6889e;
   border-radius: 20px;
   border-style: solid;
-  max-width: 400px;
+  object-fit: contain;
 }
 
 .split{
