@@ -106,7 +106,7 @@
   border-color: #82748b;
   border-radius: 20px;
 
-  width: 45%;
+  width: 80%;
   padding: 10px;
 }
 
@@ -124,4 +124,26 @@
 /* Footer */
 .containerFooter{
   color: #e3d6e7;
+}
+
+/* Table */
+.MainItemTable{
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  border: 0px;
+  border-bottom: 1px solid #dad2bb;
+  border-right: 1px solid #dad2bb;
+}
+
+.MainItemTable th{
+  background-color: #fcfbe9;
+  border-top: 1px solid #dad2bb;
+  border-left: 1px solid #dad2bb;
+}
+
+.MainItemTable td{
+  border-top: 1px solid #dad2bb;
+  border-left: 1px solid #dad2bb;
+  padding: 10px 10px 10px 20px;
 }
