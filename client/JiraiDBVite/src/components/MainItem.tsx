@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { fetchItemByID } from "../utils/itemServices";
 
+import clothes from "../assets/clothes.jpg";
+
 function MainItem() {
   const [itemIMG, setItemIMG] = useState("");
 
@@ -21,7 +23,7 @@ function MainItem() {
     <section>
       <div className="split">
         <div className="split-left">
-          <img src={itemIMG} className="displayImage" />
+          <img src={clothes} className="displayImage" />
         </div>
 
         <div className="split-right">
@@ -45,6 +47,36 @@ function MainItem() {
             <br />
             本体：ポリエステル64％、レーヨン32％、ポリウレタン4％　レース1：ナイロン100％　レース2：ナイロン100％　レース3：ナイロン100％　レース4：ナイロン100％
           </p>
+
+          <table className="MainItemTable">
+            <tbody>
+              <tr>
+                <th>Material</th>
+                <td>
+                  (Outer Fabric) 100% Polyester (Other Fabric) 100% Polyester
+                  (Lining) 100% Polyester
+                </td>
+              </tr>
+              <tr>
+                <th>Measurements</th>
+                <td>
+                  (Top) Length: 72 cm / Shoulder width: 33.5 cm / Bust: 47.5 cm
+                  / Waist: 63 cm (Max. 93 cm) / Sleeve Length: 61.5 cm / Cuff
+                  Width: 11.5 cm / Hem Width: 102.5 cm (Skirt-Pants) Length:
+                  42.5 cm / Waist: 59.5 cm (Max. 102 cm) / Belt Width: 7.5 cm /
+                  Hem Width: 105 cm
+                </td>
+              </tr>
+              <tr>
+                <th>Item Number</th>
+                <td>361-6345-0</td>
+              </tr>
+              <tr>
+                <th>Size</th>
+                <td>Free</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
