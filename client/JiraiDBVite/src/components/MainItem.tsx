@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { fetchItemByID } from "../utils/itemServices";
 
 import clothes from "../assets/clothes.jpg";
+import RadioSelector from "./RadioSelector";
 
 function MainItem() {
   const [itemIMG, setItemIMG] = useState("");
@@ -48,6 +49,8 @@ function MainItem() {
             本体：ポリエステル64％、レーヨン32％、ポリウレタン4％　レース1：ナイロン100％　レース2：ナイロン100％　レース3：ナイロン100％　レース4：ナイロン100％
           </p>
 
+          <RadioSelector />
+
           <table className="MainItemTable">
             <tbody>
               <tr>
@@ -66,14 +69,6 @@ function MainItem() {
                   42.5 cm / Waist: 59.5 cm (Max. 102 cm) / Belt Width: 7.5 cm /
                   Hem Width: 105 cm
                 </td>
-              </tr>
-              <tr>
-                <th>Item Number</th>
-                <td>361-6345-0</td>
-              </tr>
-              <tr>
-                <th>Size</th>
-                <td>Free</td>
               </tr>
             </tbody>
           </table>
