@@ -4,8 +4,8 @@ const db = pgp(connection);
 
 async function dbGetItemByID(id){
     try{
-        const itemObject = await db.one(`SELECT * FROM testtable WHERE id = '${id}'`);
-        itemObject.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
+        const itemObject = await db.one(`SELECT * FROM testtable WHERE id = $1`, [id]);
+        itemObject.imgURL = itemObject.imgKey ? `${process.env.R2_PUBLIC_URL}/${itemObject.imgKey}` : null;
         return itemObject;
     }
     catch(e){
@@ -28,7 +28,7 @@ async function dbGetAllItems(){
 
 async function dbGetSearchedItems(query){
     try{
-        const itemList = await db.any(`SELECT * FROM testtable WHERE id ILIKE '%${query}%'`, [true]);
+        const itemList = await db.any(`SELECT * FROM testtable WHERE id ILIKE '%$1%'`, [query]);
         itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
         return itemList;
     }
