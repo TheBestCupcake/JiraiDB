@@ -29,18 +29,9 @@ exports.uploadItem = async (req, res) => {
           message: "title description and category are required.",
       });
     }
-    console.log(title);
-    console.log(fileType);
-    console.log("Creating Presigned URL")
-    const presignedURL = putUrl(title, fileType);
-    console.log(presignedURL);
-    if(presignedURL == Promise){
-        return res.status(400).json({
-            success: false,
-            message: "Failed to create presignedURL",
-        })
-    }
-    
+
+    const presignedURL = await putUrl(title, fileType);
+
     await dbAddPendingItem(title, description, presignedURL, category);
 
 
