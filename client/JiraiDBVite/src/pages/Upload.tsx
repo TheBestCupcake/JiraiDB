@@ -61,9 +61,8 @@ function Upload() {
       await uploadImageToCloud(uploadURL, imageFile);
 
       //Update the database to complete upload.
-      await completeUpload(uploadURL);
+      await completeUpload(title);
 
-      e.currentTarget.reset();
       setImageFile(null);
       setPreview(null);
     } catch (error) {
