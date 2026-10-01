@@ -14,7 +14,6 @@ async function getUrl(key){
 }
 
 async function putUrl(putKey, contentType){
-    console.log("CREATING URL IN R2SERVICES");
     const putUrl = await getSignedUrl(
         jiraiS3Client,
         new PutObjectCommand({Bucket: process.env.R2_BUCKET_NAME, Key: putKey, ContentType: contentType,}),
