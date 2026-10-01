@@ -1,10 +1,10 @@
-const {dbGetItemByID, dbGetAllItems, dbGetSearchedItems} = require("../utils/itemsDB");
+const {dbGetItemByID, dbGetAllItems, dbGetSearchedItems, dbAddPendingItem} = require("../utils/itemsDB");
 const { putUrl } = require("../utils/r2Services");
 
 exports.getItem = async (req, res) => {
     const id = req.params.id;
 
-    itemJson = await dbGetItemByID(id);
+    const itemJson = await dbGetItemByID(id);
     return res.status(200).json(itemJson);
 }
 
@@ -16,7 +16,7 @@ exports.getAllOrSearchedItems = async (req, res) => {
         return res.status(200).json(items);
     }
 
-    itemList = await dbGetAllItems();
+    const itemList = await dbGetAllItems();
     return res.status(200).json(itemList);
 }
 
@@ -32,6 +32,12 @@ exports.uploadItem = async (req, res) => {
 
     const presignedURL = putUrl(title, fileType);
     
+    await dbAddPendingItem(title, description, presignedURL, category);
+
+    return res.status(200).json({
+        success: true,
+        url: presignedURL,
+    });
 
 
 }
