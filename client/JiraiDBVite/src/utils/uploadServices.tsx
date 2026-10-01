@@ -43,6 +43,7 @@ export const completeUpload = async (uploadId: string) => {
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ success: true, title: uploadId }),
     },
   );
 
