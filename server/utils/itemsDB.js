@@ -47,9 +47,20 @@ async function dbAddPendingItem(title, description, imgPath, category){
     }
 }
 
+async function dbCompletePendingItem(title){
+    try{
+        db.none(`UPDATE testtable SET status = completed WHERE id = $1`, [title]);
+    }
+    catch(e){
+        console.log("Error Caught");
+        console.log(e);
+    }
+}
+
 module.exports = {
     dbGetItemByID,
     dbGetAllItems,
     dbGetSearchedItems,
     dbAddPendingItem,
+    dbCompletePendingItem,
 }
