@@ -1,4 +1,4 @@
-const {dbGetItemByID, dbGetAllItems, dbGetSearchedItems, dbAddPendingItem} = require("../utils/itemsDB");
+const {dbGetItemByID, dbGetAllItems, dbGetSearchedItems, dbAddPendingItem, dbCompletePendingItem} = require("../utils/itemsDB");
 const { putUrl } = require("../utils/r2Services");
 
 exports.getItem = async (req, res) => {
@@ -38,6 +38,19 @@ exports.uploadItem = async (req, res) => {
         success: true,
         url: presignedURL,
     });
+}
 
+exports.completeUpload = async (req, res) => {
+    const {title, success} = req.body;
 
+    if(!title, !success){
+        return res.status(400).json({
+            success: false,
+            message: "File Upload Failed."
+        });
+    }
+
+    await dbCompletePendingItem(title);
+
+    return res.status(200);
 }
