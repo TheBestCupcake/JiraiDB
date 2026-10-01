@@ -29,10 +29,10 @@ exports.uploadItem = async (req, res) => {
           message: "title description and category are required.",
       });
     }
+    const key = crypto.randomUUID();
+    const presignedURL = await putUrl(key, fileType);
 
-    const presignedURL = await putUrl(title, fileType);
-
-    await dbAddPendingItem(title, description, presignedURL, category);
+    await dbAddPendingItem(title, description, key, category);
 
 
     return res.status(200).json({
