@@ -21,7 +21,9 @@ export const createUpload = async (
     throw new Error("Failed to create upload");
   }
 
-  return response.json();
+  const data = await response.json();
+
+  return data.url;
 };
 
 export const uploadImageToCloud = async (uploadURL: string, image: File) => {
