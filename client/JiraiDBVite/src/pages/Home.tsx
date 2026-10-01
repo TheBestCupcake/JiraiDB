@@ -7,10 +7,11 @@ import {
 } from "../utils/itemServices";
 
 type databaseItem = {
-  imgPath: string;
+  imgKey: string;
   id: string;
   Description: string;
   category: string;
+  imgURL: string;
 };
 
 type checkbox = {
@@ -27,7 +28,7 @@ function Home() {
   useEffect(() => {
     const loadIMG = async () => {
       const item = await fetchItemByID("testid");
-      setItemIMG(item.imgPath);
+      setItemIMG(item.imgURL);
     };
 
     loadIMG();
@@ -161,7 +162,7 @@ function Home() {
         <div>
           {itemList.map((item: databaseItem) => (
             <>
-              <img key={item.id} src={item.imgPath} />
+              <img key={item.id} src={item.imgURL} />
             </>
           ))}
         </div>
@@ -184,7 +185,7 @@ function Home() {
 
           {filterSearchList.map((item: databaseItem) => (
             <>
-              <img key={item.id} src={item.imgPath} />
+              <img key={item.id} src={item.imgURL} />
             </>
           ))}
         </div>
@@ -205,7 +206,7 @@ function Home() {
 
           {searchItemList.map((item: databaseItem) => (
             <>
-              <img key={item.id} src={item.imgPath} />
+              <img key={item.id} src={item.imgURL} />
               <p>{item.Description}</p>
             </>
           ))}
@@ -230,7 +231,7 @@ function Home() {
         <div>
           {checkboxOrItemList.map((item) => (
             <>
-              <img key={item.id} src={item.imgPath} />
+              <img key={item.id} src={item.imgURL} />
             </>
           ))}
         </div>
@@ -255,7 +256,7 @@ function Home() {
         <div>
           {radioItemList.map((item) => (
             <>
-              <img key={item.id} src={item.imgPath} />
+              <img key={item.id} src={item.imgURL} />
             </>
           ))}
         </div>
