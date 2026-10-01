@@ -6,6 +6,7 @@ async function dbGetItemByID(id){
     try{
         const itemObject = await db.one(`SELECT * FROM testtable WHERE id = $1`, [id]);
         itemObject.imgURL = itemObject.imgKey ? `${process.env.R2_PUBLIC_URL}/${itemObject.imgKey}` : null;
+        console.log(itemObject);
         return itemObject;
     }
     catch(e){
@@ -17,8 +18,8 @@ async function dbGetItemByID(id){
 async function dbGetAllItems(){
     try{
         const itemList = await db.any(`SELECT * FROM testtable`, [true]);
-        itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
-        return itemList;
+        const itemListURL = itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
+        return itemListURL;
     }
     catch(e){
         console.log("ERROR CAUGHT");
@@ -29,8 +30,8 @@ async function dbGetAllItems(){
 async function dbGetSearchedItems(query){
     try{
         const itemList = await db.any(`SELECT * FROM testtable WHERE id ILIKE '%$1%'`, [query]);
-        itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
-        return itemList;
+        const itemListURL = itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
+        return itemListURL;
     }
     catch(e){
         console.log("ERROR CAUGHT");
