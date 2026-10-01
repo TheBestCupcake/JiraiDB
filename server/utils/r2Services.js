@@ -13,10 +13,12 @@ async function getUrl(key){
     return url;
 }
 
-async function putUrl(putKey, contentType){
+async function putUrl(contentType){
+
+    const key = crypto.randomUUID();
     const putUrl = await getSignedUrl(
         jiraiS3Client,
-        new PutObjectCommand({Bucket: process.env.R2_BUCKET_NAME, Key: putKey, ContentType: contentType,}),
+        new PutObjectCommand({Bucket: process.env.R2_BUCKET_NAME, Key: key, ContentType: contentType,}),
         { expiresIn: 3600 },
     );
 
