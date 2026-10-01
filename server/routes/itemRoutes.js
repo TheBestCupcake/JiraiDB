@@ -7,8 +7,8 @@ const {getItem, getAllOrSearchedItems, uploadItem, completeUpload} = require("..
 //router.get(Clothes/"path", response value);
 router.get("/", getAllOrSearchedItems);
 router.get("/:id", getItem);
-router.get("/upload", uploadItem);
-router.get("/upload/:id/complete", completeUpload);
+router.post("/upload", uploadItem);
+router.post("/upload/:id/complete", completeUpload);
 
 
 module.exports = router;
