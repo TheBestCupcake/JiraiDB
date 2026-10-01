@@ -53,5 +53,5 @@ exports.completeUpload = async (req, res) => {
 
     await dbCompletePendingItem(title);
 
-    return res.status(200);
+    return res.status(200).json({success: true, message: "Database marked as complete"});
 }
