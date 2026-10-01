@@ -49,7 +49,7 @@ async function dbAddPendingItem(title, description, imgPath, category){
 
 async function dbCompletePendingItem(title){
     try{
-        db.none(`UPDATE testtable SET status = completed WHERE id = $1`, [title]);
+        await db.none(`UPDATE testtable SET status = $1 WHERE id = $2`, ['completed', title]);
     }
     catch(e){
         console.log("Error Caught");
