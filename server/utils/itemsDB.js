@@ -37,7 +37,9 @@ async function dbGetSearchedItems(query){
 
 async function dbAddPendingItem(title, description, imgPath, category){
     try{
-        
+        db.none(`INSERT INTO testtable VALUES ($1, $2, $3, $4)`, [title, description, imgPath, category]).then(() => {
+            console.log("Successfully added image");
+        })
     }
     catch(e){
         console.log("ERROR CAUGHT");
@@ -49,4 +51,5 @@ module.exports = {
     dbGetItemByID,
     dbGetAllItems,
     dbGetSearchedItems,
+    dbAddPendingItem,
 }
