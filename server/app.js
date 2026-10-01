@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 var session = require('express-session');
 
+require('dotenv').config()
 
 const port = process.env.PORT || 3000
 
