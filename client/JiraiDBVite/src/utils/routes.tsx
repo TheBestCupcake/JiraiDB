@@ -6,9 +6,11 @@ import Upload from "../pages/Upload";
 import ProtectedRoute from "../components/ProtectedRoute";
 import SignUp from "../pages/SignUp";
 import ItemDisplay from "../pages/ItemDisplay";
+import AllItems from "../pages/AllItems";
 
 let routeVariables = [
   { path: "/", name: "Home", component: <Home /> },
+  { path: "/Clothes", name: "Clothes", component: <AllItems /> },
   { path: "/Clothes/:id", name: ":id", component: <ItemDisplay /> },
   { path: "/Login", name: "Login", component: <Login /> },
   {
