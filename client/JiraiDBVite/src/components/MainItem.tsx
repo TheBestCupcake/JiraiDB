@@ -10,11 +10,12 @@ function MainItem() {
 
   //This returns everything after localhost:5173
   let location = useLocation();
-  let id = location.pathname;
+  let id = location.pathname.split("/")[-1];
+  console.log(id);
 
   useEffect(() => {
     const loadIMG = async () => {
-      const item = await fetchItemByID("testid");
+      const item = await fetchItemByID(id);
       setItemIMG(item.imgPath);
     };
 
