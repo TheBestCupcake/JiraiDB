@@ -118,11 +118,16 @@
 .split-left{
   float: left;
   width: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .split-right{
   float: left;
   width: 50%;
+  
 }
 
 
