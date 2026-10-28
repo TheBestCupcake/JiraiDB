@@ -133,6 +133,22 @@
   
 }
 
+/* All Items */
+.allItemsContainer{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.allItemsCol{
+  aspect-ratio: 1/1;
+}
+.allItemsCol img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 
 /* Footer */
 .containerFooter{
