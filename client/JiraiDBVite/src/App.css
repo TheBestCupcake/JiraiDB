@@ -91,7 +91,11 @@
   flex-direction: row;
 }
 
-
+/* MainItem Page */
+.mainItemLayout{
+  display: flex;
+  justify-content: center;
+}
 
 /* Image Display */
 .displayImage{

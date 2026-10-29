@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { fetchItemByID } from "../utils/itemServices";
 
-import clothes from "../assets/clothes.jpg";
-import RadioSelector from "./RadioSelector";
-
 function MainItem() {
   const [itemIMG, setItemIMG] = useState("");
   const [itemTitle, setItemTitle] = useState("");
@@ -25,7 +22,7 @@ function MainItem() {
     loadIMG();
   }, [id]);
   return (
-    <section>
+    <div className="mainItemLayout">
       <div className="split">
         <div className="split-left">
           <img src={itemIMG} className="displayImage" />
@@ -59,7 +56,7 @@ function MainItem() {
           </table>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
