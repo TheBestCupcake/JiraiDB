@@ -159,6 +159,18 @@
   height: auto;
   object-fit: contain;
 }
+.itemGridCol img:hover{
+  filter: drop-shadow(8px 8px 10px white);
+}
+.itemGridCol a{
+  text-decoration: none;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+.itemGridCol p:hover{
+  color: grey;
+}
 
 /* Footer */
 .containerFooter{
