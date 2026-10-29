@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchAllItems } from "../utils/itemServices";
+import { Link } from "react-router-dom";
 
 type databaseItem = {
   imgKey: string;
@@ -26,7 +27,9 @@ function AllItems() {
       <div className="allItemsContainer">
         {itemList.map((item: databaseItem) => (
           <div className="allItemsCol">
-            <img key={item.id} src={item.imgURL} />
+            <Link to={item.id}>
+              <img key={item.id} src={item.imgURL} />
+            </Link>
           </div>
         ))}
       </div>
