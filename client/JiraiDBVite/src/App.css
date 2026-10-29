@@ -133,17 +133,22 @@
   
 }
 
-/* All Items */
-.allItemsContainer{
+/* All Items Page */
+.allItemsLayout{
+
+}
+
+/* Item Grid */
+.itemGridContainer{
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 }
 
-.allItemsCol{
+.itemGridCol{
   aspect-ratio: 1/1;
 }
-.allItemsCol img{
+.itemGridCol img{
   display: block;
   width: 100%;
   height: auto;

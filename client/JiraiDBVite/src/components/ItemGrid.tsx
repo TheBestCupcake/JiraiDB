@@ -15,9 +15,9 @@ interface AllItemsProps {
 function ItemGrid({ itemList }: AllItemsProps) {
   return (
     <>
-      <div className="allItemsContainer">
+      <div className="itemGridContainer">
         {itemList.map((item: databaseItem) => (
-          <div className="allItemsCol">
+          <div className="itemGridCol">
             <Link to={item.id}>
               <img key={item.id} src={item.imgURL} />
             </Link>
