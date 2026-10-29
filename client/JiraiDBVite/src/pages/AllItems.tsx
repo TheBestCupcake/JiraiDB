@@ -25,7 +25,9 @@ function AllItems() {
   return (
     <div className="allItemsLayout">
       <div>hi</div>
+
       <ItemGrid itemList={itemList} />
+
       <div>Hi</div>
     </div>
   );

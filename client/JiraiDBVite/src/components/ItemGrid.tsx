@@ -20,6 +20,7 @@ function ItemGrid({ itemList }: AllItemsProps) {
           <div className="itemGridCol">
             <Link to={item.id}>
               <img key={item.id} src={item.imgURL} />
+              <p>{item.id}</p>
             </Link>
           </div>
         ))}
