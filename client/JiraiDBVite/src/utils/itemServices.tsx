@@ -14,6 +14,13 @@ export const fetchAllItems = async () => {
   return items;
 };
 
+export const fetchItemsByCategory = async (category: string) => {
+  const response = await fetch(`${apiURL}/Clothes/${category}`);
+
+  const items = await response.json();
+  return items;
+};
+
 export const fetchItemsBySearch = async (searchQuery: string) => {
   console.log(searchQuery);
   const response = await fetch(`${apiURL}/Clothes?search=${searchQuery}`);
