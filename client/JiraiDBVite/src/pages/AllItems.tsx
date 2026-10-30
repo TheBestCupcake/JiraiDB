@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllItems } from "../utils/itemServices";
+import { fetchAllItems, fetchItemsByCategory } from "../utils/itemServices";
 import ItemGrid from "../components/ItemGrid";
 
 interface databaseItem {
@@ -15,7 +15,7 @@ function AllItems() {
 
   useEffect(() => {
     const getItems = async () => {
-      const items = await fetchAllItems();
+      const items = await fetchItemsByCategory("all");
       setItemList(items);
     };
 

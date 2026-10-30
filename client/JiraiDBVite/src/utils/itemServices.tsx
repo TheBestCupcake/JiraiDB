@@ -8,7 +8,7 @@ export const fetchItemByID = async (id: string) => {
 };
 
 export const fetchAllItems = async () => {
-  const response = await fetch(`${apiURL}/Clothes`);
+  const response = await fetch(`${apiURL}/Clothes?category=all`);
 
   const items = await response.json();
   return items;
