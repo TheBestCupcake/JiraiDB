@@ -51,6 +51,35 @@ async function dbGetItemsByCategory(category){
     }
 }
 
+async function dbGetItems({category, search}){
+    try{
+        let query = `SELECT * FROM testtable WHERE 1=1`;
+
+        const values = [];
+
+        //category filter
+        if (category && category !== "all") {
+            values.push(category);
+            query += ` AND category = $${values.length}`;
+        }
+
+        //Search filter
+        if (search && search.trim() !== "") {
+            values.push(`%${search}%`);
+            query += ` AND id ILIKE $${values.length}`;
+        }
+
+        const itemList = await db.any(query, values);
+        const itemListURL = itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
+        return itemListURL;
+
+    }
+    catch(e){
+        console.log("ERROR CAUGHT");
+        console.log(e);
+    }
+}
+
 async function dbAddPendingItem(title, description, imgPath, category){
     try{
         db.none(`INSERT INTO testtable VALUES ($1, $2, $3, $4)`, [title, description, imgPath, category]).then(() => {
@@ -77,6 +106,7 @@ module.exports = {
     dbGetItemByID,
     dbGetAllItems,
     dbGetSearchedItems,
+    dbGetItems,
     dbAddPendingItem,
     dbCompletePendingItem,
     dbGetItemsByCategory,
