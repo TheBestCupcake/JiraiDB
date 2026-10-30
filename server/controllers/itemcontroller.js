@@ -1,4 +1,4 @@
-const {dbGetItemByID, dbGetAllItems, dbGetSearchedItems, dbAddPendingItem, dbCompletePendingItem} = require("../utils/itemsDB");
+const {dbGetItemByID, dbGetAllItems, dbGetSearchedItems, dbAddPendingItem, dbCompletePendingItem, dbGetItemsByCategory} = require("../utils/itemsDB");
 const { putUrl } = require("../utils/r2Services");
 
 exports.getItem = async (req, res) => {
@@ -17,6 +17,19 @@ exports.getAllOrSearchedItems = async (req, res) => {
     }
 
     const itemList = await dbGetAllItems();
+    return res.status(200).json(itemList);
+}
+
+exports.getItemByCategory = async (req, res) => {
+    const {category} = req.params.category;
+
+    if(!category){
+        return res.status(400).json({
+            message: "category not found."
+        });
+    }
+
+    const itemList = await dbGetItemsByCategory(category);
     return res.status(200).json(itemList);
 }
 

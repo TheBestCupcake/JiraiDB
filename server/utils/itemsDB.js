@@ -39,6 +39,18 @@ async function dbGetSearchedItems(query){
     }
 }
 
+async function dbGetItemsByCategory(category){
+    try{
+        const itemList = await db.any(`SELECT * FROM testtable WHERE category = $1`, [category]);
+        const itemListURL = itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
+        return itemListURL;
+    }
+    catch(e){
+        console.log("ERROR CAUGHT");
+        console.log(e);
+    }
+}
+
 async function dbAddPendingItem(title, description, imgPath, category){
     try{
         db.none(`INSERT INTO testtable VALUES ($1, $2, $3, $4)`, [title, description, imgPath, category]).then(() => {
@@ -67,4 +79,5 @@ module.exports = {
     dbGetSearchedItems,
     dbAddPendingItem,
     dbCompletePendingItem,
+    dbGetItemsByCategory,
 }
