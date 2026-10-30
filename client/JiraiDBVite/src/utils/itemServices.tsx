@@ -15,7 +15,7 @@ export const fetchAllItems = async () => {
 };
 
 export const fetchItemsByCategory = async (category: string) => {
-  const response = await fetch(`${apiURL}/Clothes/${category}`);
+  const response = await fetch(`${apiURL}/Clothes?category=${category}`);
 
   const items = await response.json();
   return items;
