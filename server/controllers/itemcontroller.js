@@ -1,4 +1,4 @@
-const {dbGetItemByID, dbGetAllItems, dbGetSearchedItems, dbAddPendingItem, dbCompletePendingItem, dbGetItemsByCategory} = require("../utils/itemsDB");
+const {dbGetItemByID, dbGetAllItems, dbGetSearchedItems, dbAddPendingItem, dbCompletePendingItem, dbGetItemsByCategory, dbGetItems} = require("../utils/itemsDB");
 const { putUrl } = require("../utils/r2Services");
 
 exports.getItem = async (req, res) => {
@@ -30,6 +30,14 @@ exports.getItemByCategory = async (req, res) => {
     }
 
     const itemList = await dbGetItemsByCategory(category);
+    return res.status(200).json(itemList);
+}
+
+
+exports.getItemsFromDatabase = async (req, res) => {
+    const {category, search} = req.query;
+
+    const itemList = await dbGetItems({category, search});
     return res.status(200).json(itemList);
 }
 
