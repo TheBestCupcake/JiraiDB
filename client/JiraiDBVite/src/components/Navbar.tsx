@@ -26,6 +26,10 @@ function Navbar() {
           <Link key={"/SignUp"} to={"/SignUp"}>
             Sign Up
           </Link>
+          <br />
+          <Link key={"/Clothes"} to={"/Clothes"}>
+            All Items
+          </Link>
         </nav>
       </div>
     </>
