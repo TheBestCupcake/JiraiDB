@@ -1,8 +1,8 @@
 const argon2 = require("argon2");
 
 const pgp = require('pg-promise')();
-const connection = 'postgres://postgres:FishandChips69@localhost:5432/jiraiDB';
-const db = pgp(connection);
+const cn = {localhost: 'localhost', port: 5432, database: 'jiraiDB', user: 'postgres', password: 'password'};
+const db = pgp(cn);
 
 async function dbGetUserByUsername(username){
     try{
