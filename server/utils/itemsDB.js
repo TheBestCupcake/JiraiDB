@@ -4,7 +4,7 @@ const db = pgp(cn);
 
 async function dbGetItemByID(id){
     try{
-        const itemObject = await db.one(`SELECT * FROM testtable WHERE id = $1`, [id]);
+        const itemObject = await db.one(`SELECT * FROM items WHERE id = $1`, [id]);
         itemObject.imgURL = itemObject.imgKey ? `${process.env.R2_PUBLIC_URL}/${itemObject.imgKey}` : null;
         console.log(itemObject);
         return itemObject;
@@ -17,7 +17,7 @@ async function dbGetItemByID(id){
 
 async function dbGetAllItems(){
     try{
-        const itemList = await db.any(`SELECT * FROM testtable`, [true]);
+        const itemList = await db.any(`SELECT * FROM items`, [true]);
         const itemListURL = itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
         return itemListURL;
     }
@@ -29,7 +29,7 @@ async function dbGetAllItems(){
 
 async function dbGetSearchedItems(query){
     try{
-        const itemList = await db.any(`SELECT * FROM testtable WHERE id ILIKE '%$1%'`, [query]);
+        const itemList = await db.any(`SELECT * FROM items WHERE id ILIKE '%$1%'`, [query]);
         const itemListURL = itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
         return itemListURL;
     }
@@ -41,7 +41,7 @@ async function dbGetSearchedItems(query){
 
 async function dbGetItemsByCategory(category){
     try{
-        const itemList = await db.any(`SELECT * FROM testtable WHERE category = $1`, [category]);
+        const itemList = await db.any(`SELECT * FROM items WHERE category = $1`, [category]);
         const itemListURL = itemList.map(item => ({...item, imgURL: item.imgKey ? `${process.env.R2_PUBLIC_URL}/${item.imgKey}`: null}));
         return itemListURL;
     }
@@ -53,7 +53,7 @@ async function dbGetItemsByCategory(category){
 
 async function dbGetItems({category, search}){
     try{
-        let query = `SELECT * FROM testtable WHERE 1=1`;
+        let query = `SELECT * FROM items WHERE 1=1`;
 
         const values = [];
 
@@ -80,9 +80,9 @@ async function dbGetItems({category, search}){
     }
 }
 
-async function dbAddPendingItem(title, description, imgPath, category){
+async function dbAddPendingItem(title, description, category, imgPath){
     try{
-        db.none(`INSERT INTO testtable VALUES ($1, $2, $3, $4)`, [title, description, imgPath, category]).then(() => {
+        db.none(`INSERT INTO items VALUES ($1, $2, $3, $4)`, [title, description, category, imgPath]).then(() => {
             console.log("Successfully added image");
         })
     }
@@ -94,7 +94,7 @@ async function dbAddPendingItem(title, description, imgPath, category){
 
 async function dbCompletePendingItem(title){
     try{
-        await db.none(`UPDATE testtable SET status = $1 WHERE id = $2`, ['completed', title]);
+        await db.none(`UPDATE items SET status = $1 WHERE id = $2`, ['completed', title]);
     }
     catch(e){
         console.log("Error Caught");
