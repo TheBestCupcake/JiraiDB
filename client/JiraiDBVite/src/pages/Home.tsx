@@ -27,7 +27,7 @@ function Home() {
 
   useEffect(() => {
     const loadIMG = async () => {
-      const item = await fetchItemByID("title");
+      const item = await fetchItemByID("milk");
       console.log(item.imgURL);
       setItemIMG(item.imgURL);
     };
