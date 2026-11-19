@@ -214,6 +214,7 @@ function Home() {
       </section>
 
       <section>
+        <h1>Filter by category checkbox</h1>
         <div>
           {filterCategories.map((category) => (
             <label>
