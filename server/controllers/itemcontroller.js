@@ -53,7 +53,7 @@ exports.uploadItem = async (req, res) => {
     const key = crypto.randomUUID();
     const presignedURL = await putUrl(key, fileType);
 
-    await dbAddPendingItem(title, description, key, category);
+    await dbAddPendingItem(title, description, category, key);
 
 
     return res.status(200).json({
